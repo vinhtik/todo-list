@@ -16,6 +16,11 @@ section{
     flex-wrap: wrap;
     margin: 2em;
 }
+
+h2{
+    margin: 0.5em;
+}
+
 form{
     display: block;
     position: relative;
@@ -34,7 +39,7 @@ form{
     padding: 0.5em 2em 0.5em 2em;
     border-style: none;
     border-radius: 0.5em;
-    margin: 0 0.5em 0.5em 0.5em;
+    margin: 0.5em;
 }
 
 #add:hover{
@@ -44,6 +49,7 @@ form{
 
 input{
     padding: 0.5em 1em 0.5em 1em;
+    margin: 0.5em;
     border-radius: 0.5em;
     border-style: solid;
     color: #bebebe;
