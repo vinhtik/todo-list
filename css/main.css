@@ -1,12 +1,162 @@
+body{
+background-color: #EEF4FB;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
+header{
+    display: flex;
+    padding: 0 0 0 2em;
+    background-color: #2F80ED;
+    color: #FFFFFF;
+}
 
 section{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: 2em;
 }
 form{
     display: block;
-    width: 100%;
+    position: relative;
+    border-radius: 1em;
+    padding: 1em;
+    padding-top: 0;
+    margin-left: 2.5em;
+    margin-top: 2em;
+    width: fit-content;
+    background-color: rgb(255, 255, 255);
 }
+
+#add{
+    background-color: #3181EC;
+    color: #FFFFFF;
+    padding: 0.5em 2em 0.5em 2em;
+    border-style: none;
+    border-radius: 0.5em;
+    margin: 0 0.5em 0.5em 0.5em;
+}
+
+#add:hover{
+    transition: 0.2s ease-in-out;
+    background-color: #4998ff;
+}
+
+input{
+    padding: 0.5em 1em 0.5em 1em;
+    border-radius: 0.5em;
+    border-style: solid;
+    color: #bebebe;
+    transition: 0.2s ease-in-out;
+}
+
+input:focus{
+    color: #000000;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+h3 {
+    max-width: fit-content;
+    padding: 0.5em 1em 0.5em 1em;
+    text-align: center;
+    border-radius: 0.5em;
+}
+
+#Backlog{
+    background-color: #E3E3E3;
+    color: #858585;
+}
+
+#Procces{
+    background-color: #D6E7FF;
+    color: #659ffc;
+}
+
+#Done{
+    background-color: #D2F1DA;
+    color: #7db785;
+}
+
+#Trash{
+    background-color: #f6e7e7;
+    color: #CC8A8C;
+}
+
+#clear{
+    background-color: #C9666C;
+    border-style: none;
+    border-radius: 0.7em;
+    padding: 1em;
+    color: #FFFFFF;
+}
+
+#clear:hover{
+    transition: 0.2s ease-in-out;
+    background-color: #e68086;
+}
+
+li{
+    position: relative;
+    width: fit-content;
+    max-width: 20em;
+    min-width: 15em;
+    background-color: #ffffff;
+    padding: 1em;
+    border-radius: 0.7em;
+    margin: 1em 0 1em 0;
+    list-style-type: none;
+}
+
+.liLog::before{
+    content: ""; 
+    position: absolute; 
+    left: 0;
+    top: 0; 
+    bottom: 0;
+    width: 0.5em; 
+    background-color: #E3E3E3; 
+    border-radius: 0.8em 0 0 0.8em;
+}
+
+.liProcces::before{
+    content: ""; 
+    position: absolute; 
+    left: 0;
+    top: 0; 
+    bottom: 0;
+    width: 0.5em; 
+    background-color: #D6E7FF; 
+    border-radius: 0.8em 0 0 0.8em;
+}
+
+.liDone::before{
+    content: ""; 
+    position: absolute; 
+    left: 0;
+    top: 0; 
+    bottom: 0;
+    width: 0.5em; 
+    background-color: #D2F1DA; 
+    border-radius: 0.8em 0 0 0.8em;
+}
+
+.liTrash::before{
+    content: ""; 
+    position: absolute; 
+    left: 0;
+    top: 0; 
+    bottom: 0;
+    width: 0.5em; 
+    background-color: #f6e7e7; 
+    border-radius: 0.8em 0 0 0.8em;
+}
+
+
+
+
 
