@@ -47,6 +47,10 @@ form{
     background-color: #4998ff;
 }
 
+#add:active{
+    background-color: #326dba;
+}
+
 input{
     padding: 0.5em 1em 0.5em 1em;
     margin: 0.5em;
@@ -104,6 +108,10 @@ h3 {
 #clear:hover{
     transition: 0.2s ease-in-out;
     background-color: #e68086;
+}
+
+#clear:active{
+    background-color: #bd5f66;
 }
 
 li{
