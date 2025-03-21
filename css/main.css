@@ -15,7 +15,7 @@ section.taskboard{
     flex-direction: row;
     flex-wrap: wrap;
     margin: 2em;
-    justify-content:space-between;
+    justify-content:center;
 }
 
 section.add-task{
@@ -75,10 +75,6 @@ ul{
     flex-direction: column;
     width: fit-content;
     margin-right: 2em;
-}
-
-ul:last-child{
-    margin: 0;
 }
 
 h3 {
