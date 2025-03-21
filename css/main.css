@@ -10,31 +10,35 @@ header{
     color: #FFFFFF;
 }
 
-section{
+section.taskboard{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 2em;
-    justify-content: space-between;
+    justify-content:space-between;
 }
 
-h2{
-    margin: 0.5em;
+section.add-task{
+    margin: 2em;
 }
 
 form{
-    display: block;
-    position: relative;
     border-radius: 1em;
     padding: 1em;
     padding-top: 0;
-    margin-left: 2.5em;
-    margin-top: 2em;
     width: fit-content;
     background-color: rgb(255, 255, 255);
 }
 
-#add{
+.add-task__input-wrapper label{
+    display: block;
+    font-size: large;
+    padding-top: 0.5em;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.add-task__button{
     background-color: #3181EC;
     color: #FFFFFF;
     padding: 0.5em 2em 0.5em 2em;
@@ -43,12 +47,12 @@ form{
     margin: 0.5em;
 }
 
-#add:hover{
+.add-task__button:hover{
     transition: 0.2s ease-in-out;
     background-color: #4998ff;
 }
 
-#add:active{
+.add-task__button:active{
     background-color: #326dba;
 }
 
@@ -65,17 +69,25 @@ input:focus{
     color: #000000;
 }
 
+
 ul{
     display: flex;
     flex-direction: column;
     width: fit-content;
+    margin-right: 2em;
+}
+
+ul:last-child{
+    margin: 0;
 }
 
 h3 {
     max-width: fit-content;
-    padding: 0.5em 1em 0.5em 1em;
     text-align: center;
     border-radius: 0.5em;
+    background-color: #E3E3E3;
+    color: #858585;
+    padding: 0.5em 1em 0.5em 1em;
 }
 
 #Backlog{
@@ -117,17 +129,16 @@ h3 {
 
 li{
     position: relative;
-    width: fit-content;
-    max-width: 20em;
-    min-width: 15em;
+    text-align: left;
+    width: 18em;
     background-color: #ffffff;
     padding: 1em;
     border-radius: 0.7em;
-    margin: 1em 0 1em 0;
+    margin: 0 0 1em 0;
     list-style-type: none;
 }
 
-.liLog::before{
+li::before{
     content: ""; 
     position: absolute; 
     left: 0;
@@ -138,38 +149,8 @@ li{
     border-radius: 0.8em 0 0 0.8em;
 }
 
-.liProcces::before{
-    content: ""; 
-    position: absolute; 
-    left: 0;
-    top: 0; 
-    bottom: 0;
-    width: 0.5em; 
-    background-color: #D6E7FF; 
-    border-radius: 0.8em 0 0 0.8em;
-}
 
-.liDone::before{
-    content: ""; 
-    position: absolute; 
-    left: 0;
-    top: 0; 
-    bottom: 0;
-    width: 0.5em; 
-    background-color: #D2F1DA; 
-    border-radius: 0.8em 0 0 0.8em;
-}
 
-.liTrash::before{
-    content: ""; 
-    position: absolute; 
-    left: 0;
-    top: 0; 
-    bottom: 0;
-    width: 0.5em; 
-    background-color: #f6e7e7; 
-    border-radius: 0.8em 0 0 0.8em;
-}
 
 
 

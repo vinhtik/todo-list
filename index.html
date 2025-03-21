@@ -3,55 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo-list</title>
     <link rel="stylesheet" href="./css/css-normalize.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
-<body>
-    <header>
-        <h1>Список задач</h1>
-    </header>
-    <section>
-        <form>
-            <h2>Новая задача</h2>
-            <input placeholder="Название задачи..." type="text">
-            <button id="add" onclick="">+ Добавить</button>
-        </form>
+<body class="board-app">
+
+    <main class="board-app__main">
+        <div class="board-app__inner">
+        <section class="add-task">
+    
+    
         </section>
-    <section>
-        <ul>
-            <h3 id="Backlog">Бэклог</h3>
-            <li class="liLog">
-                йоу
-            </li>
-        </ul>
-        <ul>
-            <h3 id="Procces">В процессе</h3>
-            <li class="liProcces">
-                але
-            </li>
-            <li class="liProcces">
-                так
-            </li>
-        </ul>
-        <ul>
-            <h3 id="Done">Готово</h3>
-            <li class="liDone">
-                ау
-            </li>
-        </ul>
-        <ul>
-            <h3 id="Trash">Корзина</h3>
-            <li class="liTrash">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem necessitatibus sit ducimus quas dicta similique. Voluptatum ratione amet commodi itaque sunt cupiditate possimus molestiae, facilis consequuntur libero, illum numquam cumque!
-            </li>
-            <li class="liTrash">
-                что
-            </li>
-            <button id="clear" onclick="">𐄂 Очистить</button>
-        </ul>
-    </section>
+        <section class="taskboard">
+    
+    
+        </section>
+        </div>
+    </main>
+      
     
 </body>
-<script src="index.js" type="module"></script>
+<script src="src/main.js" type="module"></script>
 </html>
