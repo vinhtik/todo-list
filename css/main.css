@@ -86,6 +86,7 @@ h3 {
     padding: 0.5em 1em 0.5em 1em;
 }
 
+/* в этой версии не нужна
 #Backlog{
     background-color: #E3E3E3;
     color: #858585;
@@ -122,6 +123,7 @@ h3 {
 #clear:active{
     background-color: #bd5f66;
 }
+*/
 
 li{
     position: relative;
