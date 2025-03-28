@@ -23,7 +23,7 @@ export const tasks = [
     },
     {
         id: "5",
-        title: "lorem ipsum",
+        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         status: Status.PROCESSING,
     },
     {
@@ -48,7 +48,7 @@ export const tasks = [
     },
     {
         id: "10",
-        title: "sigma",
+        title: "sigma Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         status: Status.TRASH,
     },
     
