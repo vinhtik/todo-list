@@ -41,5 +41,15 @@ export const tasks = [
         title: "study",
         status: Status.TRASH,
     },
+    {
+        id: "9",
+        title: "training",
+        status: Status.DONE,
+    },
+    {
+        id: "10",
+        title: "sigma",
+        status: Status.TRASH,
+    },
     
 ]
