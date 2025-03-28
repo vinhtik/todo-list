@@ -1,13 +1,14 @@
 import {createElement} from '../framework/render.js';
+import { Status } from '../const.js';
 
-function createList() {
+function createList(title, status) {
+
     return (
         `
-        <ul class="add-list">
-        <h3>Название</h3>
-
-
-        </ul>
+        <div class="task-list">
+            <h3 class="${status}">${title}</h3>
+            <ul class="tasks-container"></ul>
+        </div>
             
 `
       );
@@ -15,8 +16,14 @@ function createList() {
 
 
 export default class ListComponent {
+
+  constructor({ title, status }) {
+    this.title = title;
+    this.status = status;
+}
+
   getTemplate() {
-    return createList();
+    return createList(this.title, this.status);
   }
 
 

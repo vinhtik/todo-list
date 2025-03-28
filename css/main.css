@@ -10,13 +10,15 @@ header{
     color: #FFFFFF;
 }
 
-section.taskboard{
+
+section.add-board{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 2em;
     justify-content:center;
 }
+
 
 section.add-task{
     margin: 2em;
@@ -70,11 +72,15 @@ input:focus{
 }
 
 
-ul{
+.task-list{
     display: flex;
     flex-direction: column;
     width: fit-content;
     margin-right: 2em;
+}
+
+ul{
+    margin-bottom: 1em;
 }
 
 h3 {
@@ -86,28 +92,43 @@ h3 {
     padding: 0.5em 1em 0.5em 1em;
 }
 
-/* вдруг пригодится в след версии
-#Backlog{
+.backlog{
     background-color: #E3E3E3;
     color: #858585;
 }
 
-#Procces{
+.processing{
     background-color: #D6E7FF;
     color: #659ffc;
 }
 
-#Done{
+.done{
     background-color: #D2F1DA;
     color: #7db785;
 }
 
-#Trash{
+.trash{
     background-color: #f6e7e7;
     color: #CC8A8C;
 }
 
-#clear{
+.task--backlog::before {
+    color: #858585;
+}
+
+.task--processing::before {
+    background-color: #D6E7FF;
+}
+
+.task--done::before {
+    background-color: #D2F1DA;
+}
+
+.task--trash::before {
+    background-color: #f6e7e7;
+}
+
+.clear{
     background-color: #C9666C;
     border-style: none;
     border-radius: 0.7em;
@@ -115,15 +136,15 @@ h3 {
     color: #FFFFFF;
 }
 
-#clear:hover{
+.clear:hover{
     transition: 0.2s ease-in-out;
     background-color: #e68086;
 }
 
-#clear:active{
+.clear:active{
     background-color: #bd5f66;
 }
-*/
+
 
 li{
     position: relative;
@@ -147,6 +168,9 @@ li::before{
     border-radius: 0.8em 0 0 0.8em;
 }
 
+button{
+    border-style: none;
+}
 
 
 
