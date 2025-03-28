@@ -28,13 +28,14 @@ export default class TasksBoardPresenter {
                 status: currentStatus
             });
 
+            render(listComponent, this.#tasksBoardComponent.getElement());
+            const tasksContainer = listComponent.getElement().querySelector('ul.tasks-container');
+
             const filterTasks = this.boardTasks.filter(task => task.status === currentStatus)
 
-            render(listComponent, this.#tasksBoardComponent.getElement());
-            
             for(let j = 0; j < filterTasks.length; j++){
                 const taskComponent = new TaskComponent({task: filterTasks[j]});
-                render(taskComponent, listComponent.getElement());  
+                render(taskComponent, tasksContainer);  
             }
         }
     }

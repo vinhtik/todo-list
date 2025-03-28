@@ -1,15 +1,15 @@
 import {createElement} from '../framework/render.js';
-import { Status } from '../const.js';
 
 function createList(title, status) {
+  const clearButton = status === "trash" ? `<button class="clear">Очистить</button>`:'';
 
     return (
         `
         <div class="task-list">
             <h3 class="${status}">${title}</h3>
             <ul class="tasks-container"></ul>
-        </div>
-            
+            ${clearButton}
+        </div>  
 `
       );
 }

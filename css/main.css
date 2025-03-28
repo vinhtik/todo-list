@@ -74,13 +74,14 @@ input:focus{
 
 .task-list{
     display: flex;
+    position: relative;
     flex-direction: column;
     width: fit-content;
     margin-right: 2em;
 }
 
 ul{
-    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 h3 {
