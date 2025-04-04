@@ -3,6 +3,7 @@ import TaskComponent from "../view/task-component.js";
 import BoardComponent from "../view/board-component.js";
 import { render } from "../framework/render.js";
 import {Status, StatusLabel} from "../const.js";
+import ButtonResetComponent from "../view/reset-button-component.js";
 
 export default class TasksBoardPresenter {
     #boardContainer = null;
@@ -36,6 +37,9 @@ export default class TasksBoardPresenter {
             for(let j = 0; j < filterTasks.length; j++){
                 const taskComponent = new TaskComponent({task: filterTasks[j]});
                 render(taskComponent, tasksContainer);  
+            }
+            if(currentStatus == 'trash'){
+                render(new ButtonResetComponent(), tasksContainer);
             }
         }
     }

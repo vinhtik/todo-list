@@ -1,14 +1,12 @@
 import {createElement} from '../framework/render.js';
 
 function createList(title, status) {
-  const clearButton = status === "trash" ? `<button class="clear">Очистить</button>`:'';
 
     return (
         `
         <div class="task-list">
             <h3 class="${status}">${title}</h3>
             <ul class="tasks-container"></ul>
-            ${clearButton}
         </div>  
 `
       );

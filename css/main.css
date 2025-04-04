@@ -131,6 +131,7 @@ h3 {
 
 .clear{
     background-color: #C9666C;
+    width: 100%;
     border-style: none;
     border-radius: 0.7em;
     padding: 1em;

@@ -12,10 +12,5 @@ export default class TasksModel {
     return this.#tasks.filter(task => task.status === status);
   }
 
-  updateTaskStatus(taskId, newStatus) {
-    const task = this.#tasks.find(t => t.id === taskId);
-    if (task) {
-      task.status = newStatus;
-    }
-  }
+ 
 }
