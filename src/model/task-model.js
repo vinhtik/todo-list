@@ -4,7 +4,7 @@ import { Status } from '../const.js';
 export default class TasksModel {
   #tasks = [...mockTasks];
 
-  getTasks() {
+  get tasks() {
     return this.#tasks;
   }
 

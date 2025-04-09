@@ -1,4 +1,5 @@
 import { createElement } from "../framework/render.js";
+import { AbstractComponent } from '../framework/view/abstract-component.js';
 
 function createResetButton(){
     return(
@@ -6,24 +7,11 @@ function createResetButton(){
     );
 }
 
-export default class ButtonResetComponent {
-  getTemplate() {
+export default class ButtonResetComponent extends AbstractComponent{
+  get template() {
     return createResetButton();
   }
 
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-
-    return this.element;
-  }
-
-
-  removeElement() {
-    this.element = null;
-  }
 }
 

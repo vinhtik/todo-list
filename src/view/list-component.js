@@ -1,11 +1,12 @@
 import {createElement} from '../framework/render.js';
+import { AbstractComponent } from '../framework/view/abstract-component.js';
 
-function createList(title, status) {
+function createList(label, status) {
 
     return (
         `
         <div class="task-list">
-            <h3 class="${status}">${title}</h3>
+            <h3 class="${status}">${label}</h3>
             <ul class="tasks-container"></ul>
         </div>  
 `
@@ -13,29 +14,17 @@ function createList(title, status) {
 }
 
 
-export default class ListComponent {
+export default class ListComponent extends AbstractComponent{
 
-  constructor({ title, status }) {
-    this.title = title;
+  constructor({ label, status }) {
+    super();
+    this.label = label;
     this.status = status;
 }
 
-  getTemplate() {
-    return createList(this.title, this.status);
+  get template() {
+    return createList(this.label, this.status);
   }
 
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-
-    return this.element;
-  }
-
-
-  removeElement() {
-    this.element = null;
-  }
 }

@@ -2,21 +2,6 @@ import { Status } from "../const.js"
 
 export const tasks = [
     {
-        id: "1",
-        title: "go magaz",
-        status: Status.BACKLOG,
-    },
-    {
-        id: "2",
-        title: "go out",
-        status: Status.BACKLOG,
-    },
-    {
-        id: "3",
-        title: "work",
-        status: Status.BACKLOG,
-    },
-    {
         id: "4",
         title: "go out",
         status: Status.PROCESSING,
