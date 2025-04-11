@@ -15,6 +15,12 @@ export default class TasksBoardPresenter {
     constructor({boardContainer, tasksModel}){
         this.#boardContainer = boardContainer;
         this.#tasksModel = tasksModel;
+
+        this.#tasksModel.addObserver(this.#handleModelChange.bind(this));
+    }
+
+    get tasks(){
+        return this.#tasksModel.tasks;
     }
 
 
@@ -32,27 +38,11 @@ export default class TasksBoardPresenter {
         render(new EmptyListComponent(), container);
     }
 
-    #renderTrashList() {
-        const status = Status.TRASH;
-        const tasksListComponent = new TasksListComponent({
-            status: status,
-            label: StatusLabel[status]
+    #renderTrashButton(container) {
+        const resetButton = new ButtonResetComponent({
+            onClick: () => this.#handleClearTrash()
         });
-        
-        render(tasksListComponent, this.#tasksBoardComponent.element);
-        const tasksContainer = tasksListComponent.element;
-
-        const trashTasks = this.#boardTasks.filter(task => task.status === status);
-
-        if (trashTasks.length === 0) {
-            this.#renderEmptyList(tasksContainer);
-        } else {
-            trashTasks.forEach((task) => {
-                this.#renderTask(task, tasksContainer);
-            });
-        }
-
-        render(new ButtonResetComponent(), tasksListComponent.element);
+        render(resetButton, container);
     }
 
     #renderTasksList(status) {
@@ -64,7 +54,8 @@ export default class TasksBoardPresenter {
         render(tasksListComponent, this.#tasksBoardComponent.element);
         const tasksContainer = tasksListComponent.element;
 
-        const tasksForStatus = this.#boardTasks.filter(task => task.status === status);
+        const tasksForStatus = this.tasks.filter(task => task.status === status);
+      
 
         if (tasksForStatus.length === 0) {
             this.#renderEmptyList(tasksContainer, status);
@@ -72,15 +63,41 @@ export default class TasksBoardPresenter {
             tasksForStatus.forEach((task) => {
                 this.#renderTask(task, tasksContainer);
             });
+            if (status === 'trash'){
+                this.#renderTrashButton(tasksContainer)
+            }
         }
     }
 
     #renderBoard() {
         render(this.#tasksBoardComponent, this.#boardContainer);
-        Object.values(Status).filter(status => status !== Status.TRASH).forEach((status) => {
+        Object.values(Status).forEach((status) => {
             this.#renderTasksList(status);
         });
 
-        this.#renderTrashList();
+    }
+
+    createTask() {
+        const taskTitle = document.querySelector('#add-task').value.trim();
+        if (!taskTitle){
+            return
+        }
+        this.#tasksModel.addTask(taskTitle);
+
+        document.querySelector('#add-task').value = '';
+    }
+
+    #handleModelChange() {
+        this.#clearBoard();
+        this.#renderBoard();
+    }
+    
+    #clearBoard(){
+        this.#tasksBoardComponent.element.innerHTML = '';
+    }
+
+    #handleClearTrash() {
+        const trashTasks = this.tasks.filter(task => task.status === 'trash');
+        trashTasks.forEach(task => this.#tasksModel.removeTask(task.id));
     }
 }

@@ -5,9 +5,15 @@ import TasksModel from './model/task-model.js';
 import TasksBoardPresenter from './presenter/task-board-presenter.js';
 
 
+
 const bodyContainer = document.querySelector('.board-app');
 const formContainer = document.querySelector('.add-task');
 const boardContainer = document.querySelector(".taskboard");
+const formAddTaskComponent = new FormAddTaskComponent({onClick: handleNewTaskButtonCLick});
+
+function handleNewTaskButtonCLick(){
+    tasksBoardPresenter.createTask();
+}
 
 const tasksModel = new TasksModel();
 const tasksBoardPresenter = new TasksBoardPresenter({
@@ -17,7 +23,7 @@ const tasksBoardPresenter = new TasksBoardPresenter({
 
 
 render(new HeaderComponent(), bodyContainer, RenderPosition.BEFOREBEGIN);
-render(new FormAddTaskComponent(), formContainer);
+render(formAddTaskComponent, formContainer);
 
 tasksBoardPresenter.init();
 
