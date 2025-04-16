@@ -26,6 +26,11 @@ export default class TasksModel {
     return newTask;
   }
 
+  removeTask(taskId){
+    this.#boardtasks = this.#boardtasks.filter(task => task.id !== taskId);
+    this._notifyObservers();
+  }
+
   addObserver(observer){
     this.#observers.push(observer);
   }
@@ -38,8 +43,4 @@ export default class TasksModel {
     this.#observers.forEach((observer) => observer());
   }
 
-  removeTask(taskId){
-    this.#boardtasks = this.#boardtasks.filter(task => task.id !== taskId);
-    this._notifyObservers();
-  }
 }
