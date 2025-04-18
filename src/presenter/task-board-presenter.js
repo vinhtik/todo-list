@@ -48,12 +48,13 @@ export default class TasksBoardPresenter {
     #renderTasksList(status) {
         const tasksListComponent = new TasksListComponent({
             status: status,
-            label: StatusLabel[status]
+            label: StatusLabel[status],
+            onTaskDrop: this.#handleTaskDrop.bind(this)
         });
         
         render(tasksListComponent, this.#tasksBoardComponent.element);
-        const tasksContainer = tasksListComponent.element;
-
+        const tasksContainer = tasksListComponent.element.querySelector('.tasks-container');
+        const actionsContainer = tasksListComponent.element.querySelector('.list-actions');
         const tasksForStatus = this.tasks.filter(task => task.status === status);
       
 
@@ -64,7 +65,7 @@ export default class TasksBoardPresenter {
                 this.#renderTask(task, tasksContainer);
             });
             if (status === 'trash'){
-                this.#renderTrashButton(tasksContainer)
+                this.#renderTrashButton(actionsContainer)
             }
         }
     }
@@ -99,5 +100,10 @@ export default class TasksBoardPresenter {
     #handleClearTrash() {
         const trashTasks = this.tasks.filter(task => task.status === 'trash');
         trashTasks.forEach(task => this.#tasksModel.removeTask(task.id));
+    }
+
+    
+    #handleTaskDrop(taskId, newStatus, insertBeforeId){
+        this.#tasksModel.updateTaskStatus(taskId, newStatus, insertBeforeId);
     }
 }
