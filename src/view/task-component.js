@@ -51,19 +51,25 @@ export default class TaskComponent extends AbstractComponent {
   }
 
   #setupTouchHandlers() {
-    let startY, startX, touchOffset;
+    let touchOffset, elementWidth;
 
     this.#touchHandlers.start = (e) => {
       e.preventDefault();
       const touch = e.touches[0];
-      startY = touch.clientY;
-      startX = touch.clientX;
-      
       const rect = this.element.getBoundingClientRect();
+      
+      elementWidth = this.element.offsetWidth;
       touchOffset = {
         x: touch.clientX - rect.left,
         y: touch.clientY - rect.top
       };
+      
+      this.element.style.position = 'fixed';
+      this.element.style.left = `${rect.left}px`;
+      this.element.style.top = `${rect.top}px`;
+      this.element.style.width = `${elementWidth}px`;
+      this.element.style.zIndex = '1000';
+      this.element.style.margin = '0'; 
       
       this.#startDrag();
     };
@@ -71,10 +77,13 @@ export default class TaskComponent extends AbstractComponent {
     this.#touchHandlers.move = (e) => {
       e.preventDefault();
       const touch = e.touches[0];
+      
       const x = touch.clientX - touchOffset.x;
       const y = touch.clientY - touchOffset.y;
       
-      this.#updateElementPosition(x, y);
+      this.element.style.left = `${x}px`;
+      this.element.style.top = `${y}px`;
+      
       this.#handleListHover(touch.clientX, touch.clientY);
     };
 
@@ -105,20 +114,13 @@ export default class TaskComponent extends AbstractComponent {
     this.element.addEventListener('dragend', this.#dragHandlers.end);
   }
 
-  #updateElementPosition(x, y) {
-    this.element.style.position = 'absolute';
-    this.element.style.left = `${x}px`;
-    this.element.style.top = `${y}px`;
-    this.element.style.zIndex = '1000';
-    this.element.style.width = `${this.element.offsetWidth}px`;
-  }
-
   #resetElementPosition() {
     this.element.style.position = '';
     this.element.style.left = '';
     this.element.style.top = '';
     this.element.style.zIndex = '';
     this.element.style.width = '';
+    this.element.style.margin = '';
   }
 
   #handleListHover(clientX, clientY) {
