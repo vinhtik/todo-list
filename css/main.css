@@ -72,15 +72,6 @@ input:focus{
 }
 
 
-/* .task-list{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    width: fit-content;
-    min-width: 18em;
-    margin-right: 2em;
-} */
-
 ul{
     margin-top: 1em;
 }
@@ -217,18 +208,30 @@ li:hover {
     min-width: 18em;
     margin-right: 2em;
     padding-top: 1em;
+    transition: all 0.2s ease-in-out;
 }
 
 .task-list.drag-active .tasks-container{
     box-shadow: 0 0 0 2px #b0d2ff;
     background-color: rgba(47, 128, 237, 0.05);
-    transition: all 0.2s ease-in-out;
 }
 
 .task-list.drag-active .tasks-container{
-    min-height: 5em;
+    min-height: 15em;
+    padding: 2em;
     border-radius: 1em;
-    transition: all 0.2s ease-in-out;
+    margin-bottom: 1em;
+    
 }
+
+.task {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.task.is-moving {
+transition: all 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+
 
   
