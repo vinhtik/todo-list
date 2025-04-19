@@ -124,8 +124,14 @@ export default class TaskComponent extends AbstractComponent {
   }
 
   #handleListHover(clientX, clientY) {
-    const elementUnderTouch = document.elementFromPoint(clientX, clientY);
-    const tasksContainer = elementUnderTouch?.closest('.tasks-container');
+    const checkArea = 30;
+    const elements = document.elementsFromPoint(clientX, clientY);
+    
+    let tasksContainer = null;
+    for (const el of elements) {
+      tasksContainer = el.closest('.tasks-container');
+      if (tasksContainer) break;
+    }
     
     if (!tasksContainer) return;
   
@@ -134,11 +140,11 @@ export default class TaskComponent extends AbstractComponent {
   
     const tasks = Array.from(tasksContainer.querySelectorAll('.task:not(.is-dragging)'));
     
-    if (tasks.length === 0 || !elementUnderTouch.closest('.task')) {
-      this.#moveElementToContainer(tasksContainer, null);
-    } else {
+    if (tasks.length > 0) {
       const closestTask = this.#findClosestTask(tasks, clientY);
       this.#moveElementToContainer(tasksContainer, closestTask);
+    } else {
+      this.#moveElementToContainer(tasksContainer, null);
     }
     
     const status = targetList.querySelector('h3').className;
@@ -178,8 +184,14 @@ export default class TaskComponent extends AbstractComponent {
   }
 
   #handleDrop(clientX, clientY) {
-    const elementUnderTouch = document.elementFromPoint(clientX, clientY);
-    const tasksContainer = elementUnderTouch?.closest('.tasks-container');
+    const checkArea = 30;
+    const elements = document.elementsFromPoint(clientX, clientY);
+    
+    let tasksContainer = null;
+    for (const el of elements) {
+      tasksContainer = el.closest('.tasks-container');
+      if (tasksContainer) break;
+    }
     
     if (!tasksContainer) return;
   
