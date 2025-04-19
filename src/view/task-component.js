@@ -173,7 +173,7 @@ export default class TaskComponent extends AbstractComponent {
 
   #handleDrop(clientX, clientY) {
     const elementUnderTouch = document.elementFromPoint(clientX, clientY);
-    const targetList = elementUnderTouch?.closest('.task-list');
+    const targetList = elementUnderTouch?.closest('.tasks-container');
     
     if (!targetList) return;
 

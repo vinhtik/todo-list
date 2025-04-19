@@ -186,7 +186,7 @@ button{
     66% { box-shadow: 0 0 7px #0000ff; }
     88% { box-shadow: 0 0 3px #ff00ff; }
     100% { box-shadow: 0 0 3px #ff00ff00; }
-  }
+}
 
 li:hover {
     animation: rgb-border 0.7s infinite 
@@ -212,26 +212,13 @@ li:hover {
 }
 
 .task-list.drag-active .tasks-container{
+    min-height: 15em;
+    padding: 1em;
+    border-radius: 1em;
+    margin-bottom: 1em;
     box-shadow: 0 0 0 2px #b0d2ff;
     background-color: rgba(47, 128, 237, 0.05);
 }
-
-.task-list.drag-active .tasks-container{
-    min-height: 15em;
-    padding: 2em;
-    border-radius: 1em;
-    margin-bottom: 1em;
-    
-}
-
-.task {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.task.is-moving {
-transition: all 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
-}
-
 
 
   
