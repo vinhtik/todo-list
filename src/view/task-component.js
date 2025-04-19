@@ -125,17 +125,23 @@ export default class TaskComponent extends AbstractComponent {
 
   #handleListHover(clientX, clientY) {
     const elementUnderTouch = document.elementFromPoint(clientX, clientY);
-    const currentList = elementUnderTouch?.closest('.task-list');
+    const tasksContainer = elementUnderTouch?.closest('.tasks-container');
     
-    if (!currentList) return;
-
-    const tasksContainer = currentList.querySelector('.tasks-container');
+    if (!tasksContainer) return;
+  
+    const targetList = tasksContainer.closest('.task-list');
+    if (!targetList) return;
+  
     const tasks = Array.from(tasksContainer.querySelectorAll('.task:not(.is-dragging)'));
     
-    const closestTask = this.#findClosestTask(tasks, clientY);
-    this.#moveElementToContainer(tasksContainer, closestTask);
+    if (tasks.length === 0 || !elementUnderTouch.closest('.task')) {
+      this.#moveElementToContainer(tasksContainer, null);
+    } else {
+      const closestTask = this.#findClosestTask(tasks, clientY);
+      this.#moveElementToContainer(tasksContainer, closestTask);
+    }
     
-    const status = currentList.querySelector('h3').className;
+    const status = targetList.querySelector('h3').className;
     this.#updateTaskStatusVisual(status);
   }
 
@@ -173,26 +179,28 @@ export default class TaskComponent extends AbstractComponent {
 
   #handleDrop(clientX, clientY) {
     const elementUnderTouch = document.elementFromPoint(clientX, clientY);
-    const targetList = elementUnderTouch?.closest('.tasks-container');
+    const tasksContainer = elementUnderTouch?.closest('.tasks-container');
     
+    if (!tasksContainer) return;
+  
+    const targetList = tasksContainer.closest('.task-list');
     if (!targetList) return;
-
+  
     const status = targetList.querySelector('h3').className;
-    const tasksContainer = targetList.querySelector('.tasks-container');
     const tasks = Array.from(tasksContainer.querySelectorAll('.task:not(.is-dragging)'));
     
-    const insertBeforeId = this.#findInsertPosition(tasks, clientY);
-    this.#dispatchDropEvent(status, insertBeforeId);
-  }
-
-  #findInsertPosition(tasks, clientY) {
-    for (const task of tasks) {
-      const rect = task.getBoundingClientRect();
-      if (clientY < rect.top + rect.height/2) {
-        return task.dataset.id;
+    let insertBeforeId = null;
+    if (tasks.length > 0) {
+      for (const task of tasks) {
+        const rect = task.getBoundingClientRect();
+        if (clientY < rect.top + rect.height/2) {
+          insertBeforeId = task.dataset.id;
+          break;
+        }
       }
     }
-    return null;
+    
+    this.#dispatchDropEvent(status, insertBeforeId);
   }
 
   #dispatchDropEvent(status, insertBeforeId) {
@@ -208,14 +216,14 @@ export default class TaskComponent extends AbstractComponent {
 
   #startDrag() {
     this.element.classList.add('is-dragging');
-    document.querySelectorAll('.task-list').forEach(list => {
+    document.querySelectorAll('.tasks-container').forEach(list => {
       list.classList.add('drag-active');
     });
   }
 
   #endDrag() {
     this.element.classList.remove('is-dragging');
-    document.querySelectorAll('.task-list').forEach(list => {
+    document.querySelectorAll('.tasks-container').forEach(list => {
       list.classList.remove('drag-active');
     });
   }
