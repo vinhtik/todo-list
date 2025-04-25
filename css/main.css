@@ -220,7 +220,33 @@ li:hover {
     background-color: rgba(47, 128, 237, 0.05);
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 24px;
+    color: #555;
+    animation: pulse 1.5s infinite ease-in-out;
+}
 
+@keyframes pulse {
+0% { opacity: 0.6; transform: scale(0.95); }
+50% { opacity: 1; transform: scale(1.05); }
+100% { opacity: 0.6; transform: scale(0.95); }
+}
+
+.loading::after {
+    content: "";
+    display: inline-block;
+    animation: dots 1.5s linear infinite;
+}
+
+@keyframes dots {
+    from { content: ".."; }
+    50% { content: "..."; }
+    to { content: "."; }
+}
 
 
   

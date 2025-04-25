@@ -5,17 +5,19 @@ import { render } from "../framework/render.js";
 import {Status, StatusLabel} from "../const.js";
 import ButtonResetComponent from "../view/reset-button-component.js";
 import EmptyListComponent from "../view/empty-list-component.js";
+import LoadingViewComponent from "../view/loading-view-component.js";
 
 export default class TasksBoardPresenter {
     #boardContainer = null;
     #tasksModel = null;
     #tasksBoardComponent = new BoardComponent();
     #boardTasks = [];
+    #loadingComponent = new LoadingViewComponent();
+    #isLoading = true;
 
     constructor({boardContainer, tasksModel}){
         this.#boardContainer = boardContainer;
         this.#tasksModel = tasksModel;
-
         this.#tasksModel.addObserver(this.#handleModelChange.bind(this));
     }
 
@@ -24,9 +26,13 @@ export default class TasksBoardPresenter {
     }
 
 
-    init() {
-        this.#boardTasks = [...this.#tasksModel.tasks];
-        this.#renderBoard();
+    async init() {
+        render(this.#loadingComponent, this.#boardContainer);
+        await this.#tasksModel.init();
+        this.#isLoading = false;
+        this.#boardContainer.innerHTML = '';
+        this.#clearBoard();
+        this.#renderBoard();     
     }
 
     #renderTask(task, container) {
@@ -78,14 +84,17 @@ export default class TasksBoardPresenter {
 
     }
 
-    createTask() {
+    async createTask() {
         const taskTitle = document.querySelector('#add-task').value.trim();
         if (!taskTitle){
             return
         }
-        this.#tasksModel.addTask(taskTitle);
-
-        document.querySelector('#add-task').value = '';
+        try{
+            await this.#tasksModel.addTask(taskTitle);
+            document.querySelector('#add-task').value = '';
+        } catch (err){
+            console.error('Ошибка при создании задачи:', err);
+        }
     }
 
     #handleModelChange() {
@@ -97,13 +106,20 @@ export default class TasksBoardPresenter {
         this.#tasksBoardComponent.element.innerHTML = '';
     }
 
-    #handleClearTrash() {
-        const trashTasks = this.tasks.filter(task => task.status === 'trash');
-        trashTasks.forEach(task => this.#tasksModel.removeTask(task.id));
+    async #handleClearTrash() {
+       try {
+        await this.#tasksModel.clearBasketTasks();
+       } catch (err){
+        console.log('Ошибка при очистке корзины:', err);
+       }
     }
 
     
-    #handleTaskDrop(taskId, newStatus, insertBeforeId){
-        this.#tasksModel.updateTaskStatus(taskId, newStatus, insertBeforeId);
+    async #handleTaskDrop(taskId, newStatus){
+        try{
+        await this.#tasksModel.updateTaskStatus(taskId, newStatus);
+        } catch (err){
+            console.error('Ошибка при обновлении статуса задачи', err)
+        }
     }
 }

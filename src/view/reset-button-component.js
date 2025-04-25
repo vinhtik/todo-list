@@ -25,6 +25,5 @@ export default class ButtonResetComponent extends AbstractComponent{
     this.#handleClick();
   }
 
-
 }
 
